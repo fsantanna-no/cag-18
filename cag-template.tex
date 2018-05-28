@@ -1,5 +1,3 @@
-TODO: determinism, termination, cite LCTES, to appear
-
 \documentclass[times,twocolumn,final]{elsarticle}
 
 \usepackage{cag}
@@ -65,9 +63,21 @@ TODO: determinism, termination, cite LCTES, to appear
 \title{Structured Synchronous Reactive Programming for Game Development
         \\ \Large{Case Study: On Rewriting Pingus from C++ to \CEU}}
 
-\author{Francisco Sant'Anna
-        \\ Rio de Janeiro State University, Brazil
-        \\ francisco@ime.uerj.br}
+%\author{Francisco Sant'Anna
+        %\\ Rio de Janeiro State University, Brazil
+        %\\ francisco@ime.uerj.br}
+
+\begin{comment}
+- fraquezas
+    - no quantitative analysis
+        - so, only for 2D, non-
+- intro a Ceu
+    - ssrp and ceu
+    - main constructs
+    - determinism, termination, cite LCTES, to appear
+- acknowledgment
+- authors
+\end{comment}
 
 \begin{comment}
 \title{Computers and Graphics submission formatting guidelines\tnoteref{tnote1}}%
@@ -121,8 +131,8 @@ likely apply to most games.
 %\MSC 41A05\sep 41A10\sep 65D05\sep 65D17
 %% Keywords
 %\KWD Computers and Graphics\sep Formatting\sep Guidelines
-C++                         \sep
-\CEU                        \sep
+%C++                         \sep
+%\CEU                        \sep
 Control Flow                \sep
 Event-Driven Programming    \sep
 Game Logic                  \sep
@@ -188,8 +198,8 @@ programming~\cite{rp.deprecating,rp.rescala,sync_async.cooperative}.
 %
 In this sense, callbacks actually disrupt structured programming, becoming
 ``our generation's \emph{goto}''.%
-\footnote{``Callbacks as our Generations' \emph{goto} Statement'':
-\url{tirania.org/blog/archive/2013/Aug-15.html}}
+%\footnote{``Callbacks as our Generations' \emph{goto} Statement'':
+%\url{tirania.org/blog/archive/2013/Aug-15.html}}
 %\footnote{``Escape from Callback Hell'':
 %\url{elm-lang.org/learn/Escape-from-Callback-Hell.elm}}
 
@@ -205,7 +215,7 @@ characteristics that follow:
 \begin{description}
 \item [Reactive:] code only executes in reactions to events.
 \item [Structured:] programs use structured control mechanisms, such as
-    \code{spawn} and \code{await} (to create and suspend an activity).
+    \code{spawn} and \code{await} (to create and suspend activities).
 \item [Synchronous:] reactions run atomically and to completion on each line of
     execution, i.e., there's no implicit preemption or real parallelism.
 \end{description}
@@ -222,7 +232,7 @@ terms of memory and CPU usage.
 The runtime is single threaded and does not rely on garbage collection for
 memory management~\cite{ceu.sensys13}.
 %
-Previous work in the context of embedded sensor networks evaluates the
+Existing work in the context of embedded sensor networks evaluates the
 expressiveness of \CEU in comparison to event-driven code in C and attests a
 reduction in source code size (around 25\%) with a small increase in memory
 usage (around 5--10\%)~\cite{ceu.sensys13}.
@@ -365,6 +375,9 @@ statuses, and counters (e.g.,
 \code{delay\_count}).
 Good chances are that such variables encode some form of control-flow
 progression that cross multiple callback invocations.
+%
+Not all state follows these conventions, but they help finding classes that are
+heavy on control flow quickly at the beginning of the process.
 
 \section{Control-Flow Patterns \& Case Studies}
 \label{sec.pats}
@@ -1587,7 +1600,7 @@ from scratch, but with some performance considerations~\cite{games.frag}.
 %Instead, we rewrote an existing game and did it in small steps while keeping it
 %working.
 Although we do not provide a performance evaluation (Pingus is not performance
-sensitive), previous work on \CEU shows that it is comparable to C in the
+sensitive), existing work on \CEU shows that it is comparable to C in the
 context of embedded systems~\cite{ceu.sensys13}.
 Nonetheless, given the tight integration between \CEU and C/C++, critical parts
 of games can be preserved in C++ if needed.
@@ -1639,16 +1652,19 @@ In \CEU, all entities have an associated lexical scope, similarly to local
 variables with automatic memory management.
 %This reduces explicit manipulation of pointers and references considerably.
 
-Overall, we believe that most difficulties in implementing control-flow
-behavior in game logic is not inherent to this domain, but a result of
-accidental complexity due to the lack of structured abstractions and an
-appropriate concurrency model to develop event-based applications.
+Overall, we most difficulties in implementing control-flow behavior in game
+logic is not inherent to this domain, but a result of accidental complexity due
+to the lack of structured abstractions and an appropriate concurrency model to
+develop event-based applications.
 
+\begin{comment}
 \section*{Acknowledgments}
 
 The authors would like to thank Leonardo Kaplan and Alexander Tkachov for early
 explorations and prototypes of the game rewrite.
+\end{comment}
 
+\newpage
 \bibliographystyle{cag-num-names}
 \bibliography{my,other}
 
